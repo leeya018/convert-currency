@@ -3,35 +3,23 @@ import { observer } from "mobx-react-lite"
 import { PATH_NAMES } from "lib/util"
 import { useRouter } from "next/router"
 import { useParams } from "react-router-dom"
+import { TbArrowBackUp } from "react-icons/tb"
+import { formatDate, formatTime, freecurrencyapi, modals } from "lib/util"
+import { currencyStore } from "mobx/currencyStore"
+import { GoInfo } from "react-icons/go"
 
-const Footer = observer(() => {
-  const [currPath, setCurrPath] = useState("")
-  const router = useRouter()
-
-  useEffect(() => {
-    const path = window.location.pathname
-    setCurrPath(path)
-    // rest of your logic
-  }, [])
-
-  const isSamePage = (path) => {
-    return currPath?.toLocaleLowerCase().includes(path.toLocaleLowerCase())
-  }
+const Footer = observer(({ today, rate }) => {
   return (
-    <div
-      className="absolute bg-white z-50 bottom-0 left-0 right-0 
-      w-[100vw]
-     flex  h-30 border-2 justify-around items-center  gap-8"
-    >
-      {!isSamePage(PATH_NAMES.split) && (
-        <div onClick={() => router.push(PATH_NAMES.split)}> Split</div>
-      )}
-      {!isSamePage(PATH_NAMES.myList) && (
-        <div onClick={() => router.push(PATH_NAMES.myList)}>My List</div>
-      )}
-      {!isSamePage(PATH_NAMES.friends) && (
-        <div onClick={() => router.push(PATH_NAMES.friends)}>My Friends</div>
-      )}
+    <div className="flex justify-between items-center w-full bg-calc_gray_l px-5 ">
+      <TbArrowBackUp size={20} color="white" />
+      <div className="flex flex-col items-center">
+        <div className="text-calc_green">
+          {formatDate(today) + "    " + formatTime(today)}
+        </div>
+        <div className="text-calc_gray_s">{`1${currencyStore.currencyFrom} = ${rate}${currencyStore.currencyTo}`}</div>
+      </div>
+
+      <GoInfo size={20} color="white" />
     </div>
   )
 })
