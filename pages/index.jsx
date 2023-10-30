@@ -1,22 +1,13 @@
 import React, { useState } from "react"
-
 import { useRouter } from "next/router"
-import Image from "next/image"
-
 import { useEffect } from "react"
-import { BiArrowBack } from "react-icons/bi"
-import { RiArrowUpDownFill } from "react-icons/ri"
-import axios from "axios"
 import { currencyStore } from "mobx/currencyStore"
-import { debtStore } from "mobx/debtStore"
 import { observer } from "mobx-react-lite"
-import CurrencyFlag from "react-currency-flags"
-import { formatDate, formatTime, freecurrencyapi, modals } from "lib/util"
+import { freecurrencyapi, modals } from "lib/util"
 import Currencies from "components/currencies"
 import { modalStore } from "mobx/modalStore"
 import Calculator from "components/Calculator"
 import Footer from "components/Footer"
-import CurrencySection from "components/TargetCurrency"
 import TargetCurrency from "components/TargetCurrency"
 import SourceCurrency from "components/SourceCurrency"
 

@@ -1,3 +1,9 @@
 {
-  "semi": false
+  "semi": false,
+  "extends": ["prettier"],
+  "plugins": ["prettier", "unused-imports"],
+  "rules": {
+    "prettier/prettier": "error",
+    "unused-imports/no-unused-imports": "warn"
+  }
 }
