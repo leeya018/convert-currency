@@ -8,6 +8,7 @@
 //   "extends": ["eslint:recommended", "plugin:react/recommended"],
 
 //   "parser": "babel-eslint",
+//   // "plugins": ["import", "unused-imports", "autofix"],
 //   "parserOptions": {
 //     "ecmaFeatures": {
 //       "jsx": true
@@ -48,8 +49,7 @@
   "extends": [
     "eslint-config-next",
     "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier"
+    "plugin:react/recommended"
   ],
   // "parser": "@babel/eslint-parser",
   "parserOptions": {
@@ -59,7 +59,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "unused-imports"],
+  "plugins": ["react"],
   "rules": {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
