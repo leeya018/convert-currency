@@ -4,8 +4,6 @@ import { useRouter } from "next/router"
 import Image from "next/image"
 
 import { useEffect } from "react"
-import is from "/images/is.png"
-import us from "/images/us.png"
 import { BiArrowBack } from "react-icons/bi"
 import { RiArrowUpDownFill } from "react-icons/ri"
 import { GoInfo } from "react-icons/go"
@@ -40,9 +38,9 @@ const index = observer(() => {
       })
   }, [
     input,
-    debtStore.currencyFrom,
-    debtStore.currencyTo,
-    debtStore.choenInp,
+    currencyStore.currencyFrom,
+    currencyStore.currencyTo,
+    currencyStore.choenInp,
     modalStore.modalName,
   ])
 
@@ -111,7 +109,7 @@ const index = observer(() => {
             onChange={(e) => {
               setInput((prev) => {
                 if (prev) {
-                  return e.target.valuerget.value
+                  return e.target.value
                 }
                 return 0
               })
