@@ -16,6 +16,7 @@ import CurrencyFlag from "react-currency-flags"
 import { formatDate, formatTime, freecurrencyapi, modals } from "lib/util"
 import Currencies from "components/currencies"
 import { modalStore } from "mobx/modalStore"
+import Calculator from "components/Calculator"
 
 const index = observer(() => {
   const router = useRouter()
@@ -67,14 +68,13 @@ const index = observer(() => {
   }
   const calculate = () => {
     try {
+      console.log(eval(input).toString())
       setInput(eval(input).toString())
     } catch (error) {
       setInput("Error")
     }
   }
-  const clearInput = () => {
-    setInput("")
-  }
+
   const backspace = () => {
     setInput((prev) => {
       if (prev) {
@@ -144,148 +144,13 @@ const index = observer(() => {
       )}
       {/* calculator */}
       {!modalStore.modalName !== modals.currency && (
-        <div className="flex-1 h-full grid grid-cols-4 grid-rows-4 ">
-          <button
-            onClick={() => clearInput()}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_m"
-          >
-            {" "}
-            C
-          </button>
-          <button
-            onClick={() => backspace()}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_m"
-          >
-            {" "}
-            <BiArrowBack size={20} color="white" />
-          </button>
-          <button
-            onClick={switchInputs}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_m"
-          >
-            {" "}
-            <RiArrowUpDownFill size={20} color="white" />
-          </button>
-          <button
-            onClick={() => handleButtonClick("/")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_orange"
-          >
-            {" "}
-            /
-          </button>
-          <button
-            onClick={() => handleButtonClick("7")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            7
-          </button>
-          <button
-            onClick={() => handleButtonClick("8")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            8
-          </button>
-          <button
-            onClick={() => handleButtonClick("9")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            9
-          </button>
-          <button
-            onClick={() => handleButtonClick("*")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_orange"
-          >
-            {" "}
-            X
-          </button>
-          <button
-            onClick={() => handleButtonClick("4")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            4
-          </button>
-          <button
-            onClick={() => handleButtonClick("5")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            5
-          </button>
-          <button
-            onClick={() => handleButtonClick("6")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            6
-          </button>
-          <button
-            onClick={() => handleButtonClick("-")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_orange"
-          >
-            {" "}
-            -
-          </button>
-          <button
-            onClick={() => handleButtonClick("1")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            1
-          </button>
-          <button
-            onClick={() => handleButtonClick("2")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            2
-          </button>
-          <button
-            onClick={() => handleButtonClick("3")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            3
-          </button>
-          <button
-            onClick={() => handleButtonClick("+")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_orange"
-          >
-            {" "}
-            +
-          </button>
-          <button
-            onClick={() => handleButtonClick("0")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            0
-          </button>
-          <button
-            onClick={() => handleButtonClick(".")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            .
-          </button>
-          <button
-            onClick={() => handleButtonClick("%")}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_gray_s"
-          >
-            {" "}
-            %
-          </button>
-          <button
-            onClick={calculate}
-            className="w-full h-full flex justify-center items-center text-2xl bg-calc_orange"
-          >
-            {" "}
-            =
-          </button>
-        </div>
+        <Calculator
+          clearInput={() => setInput("")}
+          backspace={backspace}
+          switchInputs={switchInputs}
+          handleButtonClick={handleButtonClick}
+          calculate={calculate}
+        />
       )}
 
       {/* footer */}
